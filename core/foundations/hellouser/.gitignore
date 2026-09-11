@@ -1,0 +1,11 @@
+# Scala CLI / Bloop build artefacts
+.bsp/
+.scala-build/
+
+# Scala compiler artefacts
+*.class
+*.tasty
+
+# Optional IDE artefacts
+.metals/
+.idea/
