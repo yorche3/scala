@@ -9,6 +9,7 @@ Sección central de la implementación de ejercicios en **Scala** dentro del rep
 | Módulo | Descripción |
 | ------ | ----------- |
 | [`foundations/`](foundations/) | **Fase 0 — Fundamentos**: `helloworld`, `hellouser`, `unit_test/calculator`, `numbers` |
+| [`algorithms/`](algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort` |
 
 ---
 
@@ -30,6 +31,10 @@ cd ../unit_test/calculator
 sbt test
 
 cd ../../numbers
+sbt test
+
+# Ejecutar ejercicios de algoritmos puros
+cd ../../algorithms/naive_sort
 sbt test
 ```
 
