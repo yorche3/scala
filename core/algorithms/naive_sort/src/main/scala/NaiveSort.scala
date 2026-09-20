@@ -40,8 +40,10 @@ object NaiveSort {
     if (arr == null) return null
     val n = arr.length
     if (n < 2) return arr
-    for (i <- 0 until n - 1) {
-      var swapped = false
+    var i = 0
+    var swapped = true
+    while (i < n - 1 && swapped) {
+      swapped = false
       for (j <- 0 until n - i - 1) {
         if (arr(j) > arr(j + 1)) {
           val temp = arr(j)
@@ -50,9 +52,7 @@ object NaiveSort {
           swapped = true
         }
       }
-      if (!swapped) {
-        return arr
-      }
+      i += 1
     }
     arr
   }
