@@ -15,3 +15,61 @@
 //
 // Implementación pendiente: la escribe el autor. Esta delegación solo genera el
 // esqueleto y las pruebas unitarias.
+object NaiveSort {
+  def selection_sort(arr: Array[Int]): Array[Int] = {
+    if (arr == null) return null
+    val n = arr.length
+    if (n < 2) return arr
+    for (i <- 0 until n - 1) {
+      var min_index = i
+      for (j <- i + 1 until n) {
+        if (arr(j) < arr(min_index)) {
+          min_index = j
+        }
+      }
+      if (min_index != i) {
+        val temp = arr(i)
+        arr(i) = arr(min_index)
+        arr(min_index) = temp
+      }
+    }
+    arr
+  }
+
+  def bubble_sort(arr: Array[Int]): Array[Int] = {
+    if (arr == null) return null
+    val n = arr.length
+    if (n < 2) return arr
+    for (i <- 0 until n - 1) {
+      var swapped = false
+      for (j <- 0 until n - i - 1) {
+        if (arr(j) > arr(j + 1)) {
+          val temp = arr(j)
+          arr(j) = arr(j + 1)
+          arr(j + 1) = temp
+          swapped = true
+        }
+      }
+      if (!swapped) {
+        return arr
+      }
+    }
+    arr
+  }
+
+  def insertion_sort(arr: Array[Int]): Array[Int] = {
+    if (arr == null) return null
+    val n = arr.length
+    if (n < 2) return arr
+    for (i <- 1 until n) {
+      val key = arr(i)
+      var j = i
+      while (j > 0 && arr(j - 1) > key) {
+        arr(j) = arr(j - 1)
+        j -= 1
+      }
+      arr(j) = key
+    }
+    arr
+  }
+}
