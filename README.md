@@ -9,6 +9,7 @@ Proyectos en **Scala**, con programas independientes ejecutados mediante `scala`
 | Módulo | Descripción |
 | ------ | ----------- |
 | [`core/foundations/`](core/foundations/) | **Fase 0 — Fundamentos**: `helloworld`, `hellouser`, `unit_test/calculator`, `numbers` |
+| [`core/algorithms/`](core/algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort` |
 
 ---
 
@@ -32,6 +33,10 @@ sbt test
 
 # Numbers tests
 cd ../../numbers
+sbt test
+
+# Naive Sort tests
+cd ../../algorithms/naive_sort
 sbt test
 ```
 
