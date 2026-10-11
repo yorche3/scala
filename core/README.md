@@ -9,7 +9,7 @@ Sección central de la implementación de ejercicios en **Scala** dentro del rep
 | Módulo | Descripción |
 | ------ | ----------- |
 | [`foundations/`](foundations/) | **Fase 0 — Fundamentos**: `helloworld`, `hellouser`, `unit_test/calculator`, `numbers` |
-| [`algorithms/`](algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort` |
+| [`algorithms/`](algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort`, `data_structures_basics` |
 
 ---
 
@@ -36,6 +36,9 @@ sbt test
 # Ejecutar ejercicios de algoritmos puros
 cd ../../algorithms/naive_sort
 sbt test
+
+cd ../data_structures_basics
+sbt test
 ```
 
 ---
@@ -50,12 +53,15 @@ sbt test
 scala/
 └── core/
     ├── README.md
-    └── foundations/
-        ├── helloworld/
-        ├── hellouser/
-        ├── unit_test/
-        │   └── calculator/
-        └── numbers/
+    ├── foundations/
+    │   ├── helloworld/
+    │   ├── hellouser/
+    │   ├── unit_test/
+    │   │   └── calculator/
+    │   └── numbers/
+    └── algorithms/
+        ├── naive_sort/
+        └── data_structures_basics/
 ```
 
 ---
