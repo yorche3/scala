@@ -9,27 +9,41 @@ package data_structures_basics
   * `true`/`false` (`isEmpty`) y `size` devuelve el número de nodos. Solo los
   * enlaces usan `Option`. No se lanza ninguna excepción.
   *
-  * Implementación pendiente: la escribe el autor. Esta delegación solo genera el
-  * contrato (firmas y esqueletos) con las adecuaciones de salida.
+  * Implementación del paso 5: recorridos propios sobre la cadena de [[Node]].
   */
 final class Stack private ():
   private var _top: Option[Node] = None
   private var _count: Int = 0
 
-  /** Esqueleto: `true` solo si no hay nodos. */
-  def isEmpty: Boolean = false
+  /** `true` solo si no hay nodos. */
+  def isEmpty: Boolean = _count == 0
 
-  /** Esqueleto: número de nodos. */
-  def size: Int = 0
+  /** Número de nodos. */
+  def size: Int = _count
 
-  /** Esqueleto: apila `value`. O(1). */
-  def push(value: Int): Unit = ()
+  /** Apila `value`. O(1). */
+  def push(value: Int): Unit =
+    val newNode = Node(value)
+    newNode.next = _top
+    _top = Some(newNode)
+    _count += 1
 
-  /** Esqueleto: desapila; -1 cuando la pila está vacía. O(1). */
-  def pop(): Int = -1
+  /** Desapila; -1 cuando la pila está vacía. O(1). */
+  def pop(): Int =
+    if _top.isDefined then
+      val topNode = _top.get
+      _top = topNode.next
+      _count -= 1
+      topNode.value
+    else
+      -1
 
-  /** Esqueleto: mira la cima sin desapilarla; -1 cuando la pila está vacía. */
-  def peek: Int = -1
+  /** Mira la cima sin desapilarla; -1 cuando la pila está vacía. */
+  def peek: Int =
+    if _top.isDefined then
+      _top.get.value
+    else
+      -1
 
 object Stack:
   /** Crea una pila vacía (el `init()` de la especificación): sin enlaces y con

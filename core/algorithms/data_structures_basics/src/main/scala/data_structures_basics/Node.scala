@@ -11,11 +11,11 @@ final class Node private (
     val value: Int,
     private var _next: Option[Node]
 ):
-  /** Esqueleto: enlace siguiente, o `None` cuando está ausente. */
-  def next: Option[Node] = None
+  /** Enlace siguiente, o `None` cuando está ausente. */
+  def next: Option[Node] = _next
 
-  /** Esqueleto: reemplaza el enlace siguiente. */
-  def next_=(n: Option[Node]): Unit = ()
+  /** Reemplaza el enlace siguiente. */
+  def next_=(n: Option[Node]): Unit = _next = n
 
 object Node:
   /** Crea una celda con `value` y sin enlace (el `init(value)` de la

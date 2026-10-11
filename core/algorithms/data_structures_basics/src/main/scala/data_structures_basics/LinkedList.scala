@@ -9,33 +9,65 @@ package data_structures_basics
   * `false` (`delete`, `isEmpty`) y `size` devuelve el número de nodos. Solo los
   * enlaces usan `Option`. No se lanza ninguna excepción.
   *
-  * Implementación pendiente: la escribe el autor. Esta delegación solo genera el
-  * contrato (firmas y esqueletos) con las adecuaciones de salida.
+  * Implementación del paso 5: recorridos propios sobre la cadena de [[Node]]
+  * (Scala no necesita `unsafe` ni celdas compartidas mutables).
   */
 final class LinkedList private ():
   private var _head: Option[Node] = None
   private var _tail: Option[Node] = None
   private var _count: Int = 0
 
-  /** Esqueleto: valor de la cabeza, o -1 cuando la lista está vacía. */
-  def head: Int = -1
+  /** Valor de la cabeza, o -1 cuando la lista está vacía. */
+  def head: Int = _head.map(_.value).getOrElse(-1)
 
-  /** Esqueleto: `true` solo si no hay nodos. */
-  def isEmpty: Boolean = false
+  /** `true` solo si no hay nodos. */
+  def isEmpty: Boolean = _count == 0
 
-  /** Esqueleto: número de nodos. */
-  def size: Int = 0
+  /** Número de nodos. */
+  def size: Int = _count
 
-  /** Esqueleto: inserta `value` al principio. O(1). */
-  def insertHead(value: Int): Unit = ()
+  /** Inserta `value` al principio. O(1). */
+  def insertHead(value: Int): Unit =
+    val newNode = Node(value)
+    newNode.next = _head
+    _head = Some(newNode)
+    if (_tail.isEmpty) _tail = _head
+    _count += 1
 
-  /** Esqueleto: inserta `value` al final. O(1). */
-  def insertTail(value: Int): Unit = ()
+  /** Inserta `value` al final. O(1). */
+  def insertTail(value: Int): Unit =
+    val newNode = Node(value)
+    if (_tail.isEmpty) {
+      _head = Some(newNode)
+      _tail = _head
+    } else {
+      _tail.get.next = Some(newNode)
+      _tail = Some(newNode)
+    }
+    _count += 1
 
-  /** Esqueleto: borra la primera aparición de `value`; `true` si borró y
+  /** Borra la primera aparición de `value`; `true` si borró y
     * `false` si el valor no estaba. O(n).
     */
-  def delete(value: Int): Boolean = false
+  def delete(value: Int): Boolean =
+    var current = _head
+    var previous: Option[Node] = None
+    while (current.isDefined) {
+      if (current.get.value == value) {
+        if (previous.isEmpty) {
+          _head = current.get.next
+          if (_head.isEmpty) _tail = None
+        } else {
+          previous.get.next = current.get.next
+          if (current.get.next.isEmpty) _tail = previous
+        }
+        _count -= 1
+        return true
+      }
+      previous = current
+      current = current.get.next
+    }
+    false
 
 object LinkedList:
   /** Crea una lista vacía (el `init()` de la especificación): sin enlaces y
