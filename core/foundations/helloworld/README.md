@@ -8,13 +8,13 @@ Implementación de la especificación [01_Hello_World](https://yorche3.github.io
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`helloworld.scala`](helloworld.scala) | Código fuente: define el objeto `HelloWorld` e imprime `"Hello, World! from Scala!"`. |
+| [`hello_world.scala`](hello_world.scala) | Código fuente: define el objeto `HelloWorld` e imprime `"Hello, World! from Scala!"`. |
 
 **Estructura de directorios esperada:**
 
 ```text
 helloworld/
-├── helloworld.scala   # Código fuente
+├── hello_world.scala   # Código fuente
 └── README.md          # Este archivo
 ```
 
@@ -34,7 +34,7 @@ helloworld/
    mkdir -p scala/core/foundations/helloworld
    ```
 
-2. Escribir el archivo `helloworld.scala` con el código fuente.
+2. Escribir el archivo `hello_world.scala` con el código fuente.
 
 3. Ejecutar el archivo con `scala-cli` o compilarlo manualmente con `scalac`.
 
@@ -100,14 +100,14 @@ source ~/.bash_profile
 
 ```bash
 cd scala/core/foundations/helloworld
-scala-cli run helloworld.scala
+scala-cli run hello_world.scala
 ```
 
 ### Compilar manualmente / Compile manually
 
 ```bash
 cd scala/core/foundations/helloworld
-scalac helloworld.scala
+scalac hello_world.scala
 ```
 
 > **ES:** `scalac` genera clases JVM en el directorio actual. `scala-cli run` es el flujo recomendado para este archivo independiente porque compila y ejecuta el programa en un solo comando y gestiona el classpath automáticamente.
