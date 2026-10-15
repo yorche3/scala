@@ -10,13 +10,13 @@ Solicita el nombre del usuario mediante entrada estándar y muestra un saludo pe
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`hellouser.scala`](hellouser.scala) | Código fuente: solicita un nombre y lo usa para mostrar un saludo. |
+| [`hello_user.scala`](hello_user.scala) | Código fuente: solicita un nombre y lo usa para mostrar un saludo. |
 
 **Estructura de directorios esperada:**
 
 ```text
 hellouser/
-├── hellouser.scala   # Código fuente
+├── hello_user.scala   # Código fuente
 └── README.md        # Este archivo
 ```
 
@@ -44,7 +44,7 @@ hellouser/
    mkdir -p scala/core/foundations/hellouser
    ```
 
-2. Escribir el archivo `hellouser.scala` con el código fuente.
+2. Escribir el archivo `hello_user.scala` con el código fuente.
 
 3. Ejecutar el archivo con `scala-cli` o compilarlo manualmente con `scalac`.
 
@@ -98,7 +98,7 @@ scala-cli version
 
 ```bash
 cd scala/core/foundations/hellouser
-scala-cli run hellouser.scala
+scala-cli run hello_user.scala
 ```
 
 Durante la ejecución, el programa solicita el nombre y escribe el saludo al terminar la entrada.
@@ -107,14 +107,14 @@ Durante la ejecución, el programa solicita el nombre y escribe el saludo al ter
 
 ```bash
 cd scala/core/foundations/hellouser
-printf 'Ada\n' | scala-cli run hellouser.scala
+printf 'Ada\n' | scala-cli run hello_user.scala
 ```
 
 ### Compilar manualmente / Compile manually
 
 ```bash
 cd scala/core/foundations/hellouser
-scalac hellouser.scala
+scalac hello_user.scala
 ```
 
 > **ES:** `scala-cli run` es la opción recomendada para un archivo independiente porque compila y ejecuta el programa en un solo paso. `scalac` también funciona y genera artefactos JVM en el directorio actual.
