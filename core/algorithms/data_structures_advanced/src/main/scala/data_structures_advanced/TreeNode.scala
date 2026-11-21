@@ -19,17 +19,11 @@ final class TreeNode(v: Int) extends Node(v):
   /** Enlace derecho, o `None` cuando está ausente. */
   def right: Option[TreeNode] = _right
 
-  /** Reemplaza el enlace izquierdo con `node`, o lo deja ausente con `None`.
-    *
-    * Esqueleto del paso 4b: la asignación llega en el paso 5.
-    */
-  def left_=(node: Option[TreeNode]): Unit = ()
+  /** Reemplaza el enlace izquierdo con `node`, o lo deja ausente con `None`. */
+  def left_=(node: Option[TreeNode]): Unit = _left = node
 
-  /** Reemplaza el enlace derecho con `node`, o lo deja ausente con `None`.
-    *
-    * Esqueleto del paso 4b: la asignación llega en el paso 5.
-    */
-  def right_=(node: Option[TreeNode]): Unit = ()
+  /** Reemplaza el enlace derecho con `node`, o lo deja ausente con `None`. */
+  def right_=(node: Option[TreeNode]): Unit = _right = node
 
 object TreeNode:
   /** Crea un nodo con `value` y ambos enlaces ausentes (el `init(value)` de la

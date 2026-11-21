@@ -12,17 +12,47 @@ final class BinaryTree private ():
   private var _root: Option[TreeNode] = None
   private var _count: Int = 0
 
-  /** Inserta `value`; un duplicado también es éxito y no crece el tamaño.
-    *
-    * Esqueleto del paso 4b: devuelve el fallo sin resolver el caso.
-    */
-  def insert(value: Int): Boolean = false
+  private def insertNode(node: TreeNode, value: Int): Boolean =
+    if value == node.value then false
+    else if value < node.value then
+      node.left match
+        case Some(leftNode) => insertNode(leftNode, value)
+        case None =>
+          node.left = Some(TreeNode(value))
+          true
+    else
+      node.right match
+        case Some(rightNode) => insertNode(rightNode, value)
+        case None =>
+          node.right = Some(TreeNode(value))
+          true
 
-  /** Éxito si `value` pertenece al árbol; sigue la invariante del ABB.
-    *
-    * Esqueleto del paso 4b: devuelve el fallo sin resolver el caso.
-    */
-  def contains(value: Int): Boolean = false
+  /** Inserta `value`; un duplicado también es éxito y no crece el tamaño. */
+  def insert(value: Int): Boolean =
+    _root match
+      case Some(rootNode) =>
+        if insertNode(rootNode, value) then _count += 1
+      case None =>
+        _root = Some(TreeNode(value))
+        _count += 1
+    true
+
+  /** Éxito si `value` pertenece al árbol; sigue la invariante del ABB. */
+  def contains(value: Int): Boolean =
+    def containsNode(node: TreeNode, value: Int): Boolean =
+      if value == node.value then true
+      else if value < node.value then
+        node.left match
+          case Some(leftNode) => containsNode(leftNode, value)
+          case None => false
+      else
+        node.right match
+          case Some(rightNode) => containsNode(rightNode, value)
+          case None => false
+
+    _root match
+      case Some(rootNode) => containsNode(rootNode, value)
+      case None => false
 
   /** `true` solo si no hay nodos. */
   def isEmpty: Boolean = _count == 0

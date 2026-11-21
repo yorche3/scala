@@ -14,30 +14,49 @@ final class Graph private ():
   private var _vertexCount: Int = 0
   private var _edgeCount: Int = 0
 
-  /** Registra `label`; un duplicado también es éxito y conserva los vecinos.
-    *
-    * Esqueleto del paso 4b: devuelve el fallo sin resolver el caso.
-    */
-  def addVertex(label: Int): Boolean = false
+  private def findVertex(label: Int): Option[GraphNode] =
+    def loop(node: Option[GraphNode]): Option[GraphNode] =
+      node match
+        case None => None
+        case Some(n) =>
+          if n.label == label then Some(n)
+          else loop(n.nextVertex)
+
+    loop(_vertices)
+
+  /** Registra `label`; un duplicado también es éxito y conserva los vecinos. */
+  def addVertex(label: Int): Boolean =
+    if findVertex(label).isDefined then true
+    else
+      val newNode = GraphNode(label)
+      newNode.nextVertex = _vertices
+      _vertices = Some(newNode)
+      _vertexCount += 1
+      true
 
   /** Añade la arista `u → v`; falla si falta un extremo y no muta.
     *
-    * Esqueleto del paso 4b: devuelve el fallo sin resolver el caso.
+    * Una arista repetida o un bucle repetido también son éxito, pero no suman
+    * al contador: solo cuenta la arista nueva.
     */
-  def addEdge(u: Int, v: Int): Boolean = false
+  def addEdge(u: Int, v: Int): Boolean =
+    (findVertex(u), findVertex(v)) match
+      case (Some(uNode), Some(_)) =>
+        if uNode.addNeighborIfAbsent(v) then _edgeCount += 1
+        true
+      case _ => false
 
-  /** Éxito si la arista `u → v` existe; falla si falta un extremo.
-    *
-    * Esqueleto del paso 4b: devuelve el fallo sin resolver el caso.
-    */
-  def hasEdge(u: Int, v: Int): Boolean = false
+  /** Éxito si la arista `u → v` existe; falla si falta un extremo. */
+  def hasEdge(u: Int, v: Int): Boolean =
+    findVertex(u) match
+      case Some(uNode) => uNode.hasNeighbor(v)
+      case None => false
 
   /** Vecinos de `u` en orden creciente; `Some(Nil)` si está aislado y `None` si
     * el vértice no existe.
-    *
-    * Esqueleto del paso 4b: devuelve la ausencia sin resolver el caso.
     */
-  def neighbors(u: Int): Option[List[Int]] = None
+  def neighbors(u: Int): Option[List[Int]] =
+    findVertex(u).map(_.neighbors)
 
   /** `true` solo si no hay vértices. */
   def isEmpty: Boolean = _vertexCount == 0
