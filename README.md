@@ -9,7 +9,7 @@ Proyectos en **Scala**, con programas independientes ejecutados mediante `scala`
 | Módulo | Descripción |
 | ------ | ----------- |
 | [`core/foundations/`](core/foundations/) | **Fase 0 — Fundamentos**: `helloworld`, `hellouser`, `unit_test/calculator`, `numbers` |
-| [`core/algorithms/`](core/algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort`, `data_structures_basics` |
+| [`core/algorithms/`](core/algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort`, `data_structures_basics`, `data_structures_advanced` |
 
 ---
 
@@ -41,6 +41,10 @@ sbt test
 
 # Data Structures Basics tests
 cd ../data_structures_basics
+sbt test
+
+# Data Structures Advanced tests
+cd ../data_structures_advanced
 sbt test
 ```
 

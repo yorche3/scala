@@ -12,6 +12,7 @@ Los módulos de esta fase trabajan sobre **arrays mutables** (`Array[Int]`), que
 |--------|---------------|---------|:-----:|:------:|
 | [`naive_sort/`](naive_sort/) | [05_Naive_Sort](https://yorche3.github.io/programming_languages/core/algorithms/05_Naive_Sort/) | `sbt test` (ScalaTest) | 24 | ✅ |
 | [`data_structures_basics/`](data_structures_basics/) | [06_Data_Structures_Basics](https://yorche3.github.io/programming_languages/core/algorithms/06_Data_Structures_Basics/) | `sbt test` (ScalaTest) | 19 | ✅ |
+| [`data_structures_advanced/`](data_structures_advanced/) | [07_Data_Structures_Advanced](https://yorche3.github.io/programming_languages/core/algorithms/07_Data_Structures_Advanced/) | `sbt test` (ScalaTest) | 23 | ✅ |
 
 ---
 
@@ -28,17 +29,30 @@ algorithms/
 │   ├── src/test/scala/
 │   │   └── NaiveSortTests.scala       # 3 tests × 8 casos
 │   └── README.md
-└── data_structures_basics/            # 06_Data_Structures_Basics
+├── data_structures_basics/            # 06_Data_Structures_Basics
+│   ├── build.sbt                      # Proyecto + dependencia scalatest
+│   ├── project/build.properties       # sbt 1.10.1
+│   ├── .gitignore                     # target/, .bsp/, .scala-build/, .metals/, .idea/
+│   ├── src/main/scala/data_structures_basics/
+│   │   ├── Node.scala                 # Celda enlazada compartida Node
+│   │   ├── LinkedList.scala           # Lista enlazada simple
+│   │   ├── Stack.scala                # Pila LIFO independiente
+│   │   └── Queue.scala                # Cola FIFO independiente
+│   ├── src/test/scala/data_structures_basics/
+│   │   └── DataStructuresBasicsTests.scala # 19 tests
+│   └── README.md
+└── data_structures_advanced/          # 07_Data_Structures_Advanced
     ├── build.sbt                      # Proyecto + dependencia scalatest
     ├── project/build.properties       # sbt 1.10.1
     ├── .gitignore                     # target/, .bsp/, .scala-build/, .metals/, .idea/
-    ├── src/main/scala/data_structures_basics/
-    │   ├── Node.scala                 # Celda enlazada compartida Node
-    │   ├── LinkedList.scala           # Lista enlazada simple
-    │   ├── Stack.scala                # Pila LIFO independiente
-    │   └── Queue.scala                # Cola FIFO independiente
-    ├── src/test/scala/data_structures_basics/
-    │   └── DataStructuresBasicsTests.scala # 19 tests
+    ├── src/main/scala/data_structures_advanced/
+    │   ├── Node.scala                 # Celda base compartida Node
+    │   ├── TreeNode.scala             # Nodo de árbol binario TreeNode
+    │   ├── BinaryTree.scala           # Árbol binario de búsqueda
+    │   ├── GraphNode.scala            # Vértice de grafo con vecinos
+    │   └── Graph.scala                # Grafo dirigido con registro de vértices
+    ├── src/test/scala/data_structures_advanced/
+    │   └── DataStructuresAdvancedTests.scala # 23 tests
     └── README.md
 ```
 
@@ -75,6 +89,10 @@ sbt clean compile test
 
 # Data Structures Basics Tests
 cd ../data_structures_basics
+sbt clean compile test
+
+# Data Structures Advanced Tests
+cd ../data_structures_advanced
 sbt clean compile test
 ```
 
